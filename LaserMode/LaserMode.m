@@ -38,7 +38,7 @@ Nz = 500;
 displayType = "intensity"; % "realTime"/"intensity"/"phase"
 
 %% Process_3
-% mode_2(Lam, Len_min, Len_max, dLen, r, N, n, q, Apt, Nx, Nz, displayType, Atype);
+mode_2(Lam, Len_min, Len_max, dLen, r, N, n, q, Apt, Nx, Nz, displayType, Atype);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Parameter_3
 m = 1;
@@ -46,7 +46,7 @@ n = 1;
 Ltype = 1;
 
 %% Process_3
-% mode_3(Lam ,Len_min ,Len_max, dLen, m, n, Ltype);
+mode_3(Lam ,Len_min ,Len_max, dLen, m, n, Ltype);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function mode_1(Len_min, Len_max, dLen, r, N, n, q, Atype)
