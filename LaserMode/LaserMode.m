@@ -38,7 +38,7 @@ Nz = 500;
 displayType = "intensity"; % "realTime"/"intensity"/"phase"
 
 %% Process_3
-mode_2(Lam, Len_min, Len_max, dLen, r, N, n, q, Apt, Nx, Nz, displayType, Atype);
+% mode_2(Lam, Len_min, Len_max, dLen, r, N, n, q, Apt, Nx, Nz, displayType, Atype);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Parameter_3
 m = 1;
@@ -46,7 +46,7 @@ n = 1;
 Ltype = 1;
 
 %% Process_3
-mode_3(Lam ,Len_min ,Len_max, dLen, m, n, Ltype);
+% mode_3(Lam ,Len_min ,Len_max, dLen, m, n, Ltype);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function mode_1(Len_min, Len_max, dLen, r, N, n, q, Atype)
@@ -125,7 +125,6 @@ subplot(1, 2, 2);
 hold on
 h2 = plot(real(A_total(2)), imag(A_total(2)), "Color",[1,0.5,0.3],"Marker","o","LineWidth",2,"MarkerSize",15);
 q2 = quiver(0, 0, real(A_total(2)), imag(A_total(2)), "Color",[1,0.5,0.3],"ShowArrowHead","off","LineWidth",2);
-tit2 = title(sprintf("失谐频率: %.3f THz", mu(2)/1e12));
 txt2 = text(0.05, 0.85, sprintf("总振幅: %.2f", abs(A_total(2))), "FontSize", 12, "Units", "normalized");
 xlim([-0.1,0.1]); ylim([-0.1,0.1])
 grid on
@@ -135,6 +134,7 @@ for k = 1:N
     if (Atype == "pure")
         A_add = 0.1;
     elseif (Atype == "noise")
+        tit2 = title(sprintf("失谐频率: %.3f THz", mu(2)/1e12));
         A_add = 0.05 + 0.05*exp(-1i*(phi-5.9*k));
     end
     A_total = r * A_total .* exp(-1i*phi) + A_add;
@@ -153,14 +153,17 @@ drawnow
 figure("Position", [0, 0, 700, 400]);
 subplot(1,2,1)
 plot(1:N, I(:,1), "Color", [0.3,0.5,1], "LineWidth", 2);
-title("谐振频率");
+tit1 = title(sprintf("谐振频率: %.3f THz", mu(1)/1e12));
 xlabel("往返次数");
 ylabel("相对光强");
 grid on
 set(gca,"FontSize",15,"Box","on","LineWidth",2);
 subplot(1,2,2)
 plot(1:N, I(:,2), "Color", [1,0.5,0.3], "LineWidth", 2);
-title("失谐频率");
+if (Atype == "pure")
+elseif (Atype == "noise")
+    tit2 = title(sprintf("失谐频率: %.3f THz", mu(2)/1e12));
+end
 xlabel("往返次数");
 ylabel("相对光强");
 grid on
